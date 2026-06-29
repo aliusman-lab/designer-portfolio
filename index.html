@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alen Kevin | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init('YOUR_PUBLIC_KEY');</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { width: 100%; overflow-x: hidden; }
+        body { width: 100%; overflow-x: hidden; background: #f8f8f8; font-family: 'Inter', sans-serif; }
+
+        .font-heading { font-family: "Ubuntu", sans-serif; }
+        .font-logon1  { font-family: "Cinzel", serif; }
+        .font-logon2  { font-family: "Inter", sans-serif; }
+        .font-mont    { font-family: "Montserrat", sans-serif; }
+        .font-hero    { font-family: "Comforter", cursive; }
+
+        /* Smooth float — uses translateX(-50%) for centering + animation */
+        @keyframes smoothFloat {
+            0%   { transform: translateX(-50%) translateY(0px); }
+            25%  { transform: translateX(-50%) translateY(-8px); }
+            50%  { transform: translateX(-50%) translateY(0px); }
+            75%  { transform: translateX(-50%) translateY(6px); }
+            100% { transform: translateX(-50%) translateY(0px); }
+        }
+        .smooth-float {
+            animation: smoothFloat 6s ease-in-out infinite;
+            will-change: transform;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.18));
+        }
+
+        .heart-icon { fill: none; }
+        .heart-icon.filled { fill: #fff; stroke: #fff; }
+
+        .prjcard { transition: transform 0.3s ease; cursor: pointer; }
+        .prjcard:hover { transform: translateY(-4px); }
+
+        .overlay {
+            position: absolute; top: 0; left: 0;
+            width: 42px; height: 42px;
+            border-bottom-right-radius: 10px;
+            background: white;
+            display: flex; align-items: center; justify-content: center;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700; font-size: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col">
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<div class="w-full h-screen flex flex-col" style="overflow:hidden;">
+
+    <!-- NAV -->
+    <nav class="w-full px-4 sm:px-6 py-3 flex justify-between items-center z-50 relative flex-shrink-0">
+        <div class="leading-[0.75] tracking-tight text-black">
+            <span class="font-logon1 text-[16px] sm:text-[24px] md:text-[30px] font-semibold tracking-[4px]">ALEN</span><br>
+            <span class="font-logon2 font-bold text-[20px] sm:text-[28px] md:text-[35px]">KEVIN</span>
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img class="w-[7vh] h-[7vh] sm:w-[9vh] sm:h-[9vh]" src="/public/images/aklogo.png" alt="Logo">
+        </div>
+
+        <div class="flex items-center gap-2">
+            <button class="bg-[#b2ff0a] font-mont text-black px-3 sm:px-5 py-1.5 rounded-full font-bold text-[10px] sm:text-[13px] uppercase tracking-widest shadow-lg whitespace-nowrap">
+                Hire Me
+            </button>
+            <button id="menuBtn" class="z-[100] w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0">
+                <span id="menuIcon" class="text-base leading-none">☰</span>
+            </button>
+        </div>
+
+        <nav id="sideNav" class="fixed top-0 right-[-100%] h-full w-64 sm:w-72 bg-black text-white flex flex-col justify-center items-center space-y-8 z-[90] shadow-2xl transition-all duration-500">
+            <a href="#" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">Home</a>
+            <a href="#about" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">About</a>
+            <a href="/src/projects.html" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">Projects</a>
+            <a href="#contact" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">Contact</a>
+        </nav>
+    </nav>
+
+    <!-- HERO MAIN -->
+    <main class="flex-1 relative" style="overflow:hidden;">
+
+        <svg width="0" height="0" style="position:absolute;pointer-events:none;">
+            <defs>
+                <filter id="mist" x="-10%" y="-10%" width="120%" height="120%">
+                    <feTurbulence id="mistTurbulence" type="fractalNoise" baseFrequency="0.03 0.025" numOctaves="4" seed="12" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+                    <feGaussianBlur id="mistBlur" in="displaced" stdDeviation="2.5"/>
+                </filter>
+            </defs>
+        </svg>
+
+        <!-- BG -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#f8f8f6] via-[#f3f3f1] to-[#e8e8e5]"></div>
+
+        <!-- Fades -->
+        <div class="absolute inset-0 z-20 pointer-events-none flex flex-col">
+            <div class="h-1/3 bg-gradient-to-b from-white/50 to-transparent"></div>
+            <div class="h-1/3"></div>
+            <div class="h-1/3 bg-gradient-to-t from-white/30 to-transparent"></div>
+        </div>
+
+        <!-- DESIGNER — perfectly centered -->
+        <div class="absolute inset-0 z-10 flex items-center justify-center" style="overflow:hidden;">
+            <h1 id="designer-text"
+                class="font-hero select-none text-[#acce43] mix-blend-multiply"
+                style="font-size:clamp(36px,30vw,200px);line-height:1;filter:url(#mist);opacity:0.88;white-space:nowrap;cursor:default;text-align:center;max-width:100%;">
+                DESIGNER
+            </h1>
+        </div>
+
+        <!-- Person Image — left:50% + translateX(-50%) = center -->
+        <img src="/public/images/mensd.png"
+             class="smooth-float z-40 absolute object-contain"
+             style="height:86%;max-height:800px;width:auto;bottom:0;left:50%;"
+             alt="Alen Kevin">
+    </main>
+</div>
+
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<section id="about" class="w-full flex flex-col px-4 sm:px-8 md:px-12 pt-16 pb-16 bg-[#f8f8f8]">
+
+    <div class="relative w-fit mb-16">
+        <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-7xl relative z-10">ABOUT ME</h2>
+        <svg class="absolute -bottom-5 left-0 w-full h-12 z-0" viewBox="0 0 300 40" fill="none">
+            <path d="M5 40 Q150 20 297 25" stroke="#b2ff0a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mt-6">
+
+        <!-- Circle image -->
+        <div id="abt-img" class="w-full md:w-1/2 flex justify-center items-center" style="min-height:260px;">
+            <div class="rounded-full bg-[#b2ff0a] overflow-hidden flex justify-center items-end"
+                 style="width:clamp(200px,40vw,340px);height:clamp(200px,40vw,340px);">
+                <img src="/public/images/men2img.png" alt="Alen Kevin" class="w-4/5 drop-shadow-2xl"/>
+            </div>
+        </div>
+
+        <!-- Text -->
+        <div id="abt-cont" class="w-full md:w-1/2 flex flex-col gap-7">
+            <div class="space-y-3">
+                <h3 class="font-logon2 text-lg sm:text-xl md:text-2xl">
+                    Who is <span class="font-bold bg-black pl-2 pr-2 rounded-2xl text-[#b2ff0a]">Alen Kevin</span>?
+                </h3>
+                <p class="font-mont text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                    I am Alen Kevin, a graphic designer specializing in visual identity and digital experiences. My work lives at the intersection of minimalist aesthetics and high-impact branding.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 sm:gap-5">
+                <div class="flex gap-1">
+                    <div class="w-1 rounded-2xl bg-black flex-shrink-0"></div>
+                    <div class="flex flex-col px-1">
+                        <span class="font-logon2 text-2xl sm:text-4xl font-bold text-black">50+</span>
+                        <span class="font-mont font-bold text-[8px] sm:text-[10px] uppercase tracking-widest mt-1">Projects Completed</span>
+                    </div>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-1 rounded-2xl bg-black flex-shrink-0"></div>
+                    <div class="flex flex-col px-1">
+                        <span class="font-logon2 text-2xl sm:text-4xl font-bold text-black">12+</span>
+                        <span class="font-mont font-bold text-[8px] sm:text-[10px] uppercase tracking-widest mt-1">Global Clients</span>
+                    </div>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-1 rounded-2xl bg-black flex-shrink-0"></div>
+                    <div class="flex flex-col px-1">
+                        <span class="font-logon2 text-2xl sm:text-4xl font-bold text-black">05+</span>
+                        <span class="font-mont font-bold text-[8px] sm:text-[10px] uppercase tracking-widest mt-1">Experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="group flex items-center gap-3 font-mont font-bold text-xs sm:text-sm uppercase tracking-[3px] w-fit">
+                <span class="bg-[#b2ff0a] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full group-hover:bg-black group-hover:text-[#b2ff0a] transition-all duration-300">More Intro</span>
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-black flex items-center justify-center group-hover:translate-x-2 transition-transform">→</div>
+            </button>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     EDUCATION
+══════════════════════════════════ -->
+<section id="education" class="w-full flex flex-col px-4 sm:px-8 md:px-12 py-16 sm:py-20 bg-[#f8f8f8]">
+
+    <div class="relative w-fit mb-16">
+        <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-7xl relative z-10">EDUCATION</h2>
+        <svg class="absolute -bottom-5 left-0 w-full h-12 z-0" viewBox="0 0 300 40" fill="none">
+            <path d="M5 40 Q150 20 297 25" stroke="#b2ff0a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div id="edu-card" class="w-full max-w-5xl mt-12 space-y-8 sm:space-y-10">
+
+        <div class="edu-item bg-black rounded-2xl p-5 sm:p-8 md:p-10 border border-white/10">
+            <div class="flex flex-col md:flex-row md:justify-between gap-4 md:gap-8">
+                <div>
+                    <h3 class="font-heading text-xl sm:text-3xl md:text-4xl text-white mb-3">
+                        Bachelor of <span class="text-[#b2ff0a]">Graphic Design</span>
+                    </h3>
+                    <p class="text-white/60 hover:text-white transition font-mont leading-relaxed text-sm sm:text-base">
+                        Focused on visual communication, branding systems, typography, and digital media with a strong emphasis on conceptual thinking.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center md:text-right flex-shrink-0">
+                    <p class="font-mont font-bold text-sm sm:text-lg text-white">National School of Arts</p>
+                    <span class="mt-2 text-[10px] tracking-widest font-bold text-[#b2ff0a] uppercase">2022 — 2026</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="edu-item bg-black rounded-2xl p-5 sm:p-8 md:p-10 border border-white/10">
+            <div class="flex flex-col md:flex-row md:justify-between gap-4 md:gap-8">
+                <div>
+                    <h3 class="font-heading text-xl sm:text-3xl md:text-4xl text-white mb-3">
+                        <span class="text-[#b2ff0a]">UI / UX</span> Advanced Mastery
+                    </h3>
+                    <p class="text-white/60 hover:text-white transition font-mont leading-relaxed text-sm sm:text-base">
+                        Advanced certification focused on user research, interaction design, wireframing systems, and high-fidelity prototyping.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center md:text-right flex-shrink-0">
+                    <p class="font-mont font-bold text-sm sm:text-lg text-white">Google Design Academy</p>
+                    <span class="mt-2 text-[10px] tracking-widest font-bold text-[#b2ff0a] uppercase">Certification</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     PROJECTS
+══════════════════════════════════ -->
+<section id="projects" class="w-full py-16 sm:py-20 px-4 sm:px-8 md:px-10">
+
+    <div class="flex justify-between items-end mb-12 sm:mb-16">
+        <div class="relative w-fit">
+            <h2 id="proj" class="font-heading font-bold text-4xl sm:text-5xl md:text-7xl cursor-pointer relative z-10">PROJECTS</h2>
+            <svg class="absolute -bottom-5 left-0 w-full h-12 z-0" viewBox="0 0 300 40" fill="none">
+                <path d="M5 40 Q150 20 289 25" stroke="#b2ff0a" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <button id="viewall" class="py-2 px-4 sm:px-5 font-mont font-bold text-[#b2ff0a] uppercase hover:scale-105 transition rounded-xl bg-black text-xs sm:text-sm flex-shrink-0 ml-4">
+            View All
+        </button>
+    </div>
+
+    <!-- KEY FIX: grid instead of flex, no fixed widths -->
+    <div id="proj-cards" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+
+        <div id="c-logo-design" class="prjcard relative bg-black rounded-2xl p-5 sm:p-6">
+            <div class="overlay">1</div>
+            <h3 class="text-xl sm:text-2xl font-logon2 text-[#b2ff0a] font-bold mt-8 mb-2">Logo Design</h3>
+            <p class="text-white/60 hover:text-white transition font-mont text-sm leading-relaxed">Distilling brand essence into a single, iconic, and timeless mark.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-4">
+                <img class="h-8 w-8 hover:scale-110" src="/public/images/arrow.png" alt="">
+                <button class="hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="#fff9" class="w-6 h-6 heart-icon" onclick="this.classList.toggle('filled')">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="c-thumbnail-design" class="prjcard relative bg-black rounded-2xl p-5 sm:p-6">
+            <div class="overlay">2</div>
+            <h3 class="text-xl sm:text-2xl font-logon2 text-[#b2ff0a] font-bold mt-8 mb-2">Thumbnail Design</h3>
+            <p class="text-white/60 hover:text-white transition font-mont text-sm leading-relaxed">Creating high-intent visual hooks to capture instant digital attention.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-4">
+                <img class="h-8 w-8 hover:scale-110" src="/public/images/arrow.png" alt="">
+                <button class="hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="#fff9" class="w-6 h-6 heart-icon" onclick="this.classList.toggle('filled')">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="c-poster-design" class="prjcard relative bg-black rounded-2xl p-5 sm:p-6">
+            <div class="overlay">3</div>
+            <h3 class="text-xl sm:text-2xl font-logon2 text-[#b2ff0a] font-bold mt-8 mb-2">Poster Design</h3>
+            <p class="text-white/60 hover:text-white transition font-mont text-sm leading-relaxed">Merging bold typography with imagery for high-impact visual storytelling.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-4">
+                <img class="h-8 w-8 hover:scale-110" src="/public/images/arrow.png" alt="">
+                <button class="hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="#fff9" class="w-6 h-6 heart-icon" onclick="this.classList.toggle('filled')">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="c-banner-design" class="prjcard relative bg-black rounded-2xl p-5 sm:p-6">
+            <div class="overlay">4</div>
+            <h3 class="text-xl sm:text-2xl font-logon2 text-[#b2ff0a] font-bold mt-8 mb-2">Banner Design</h3>
+            <p class="text-white/60 hover:text-white transition font-mont text-sm leading-relaxed">Expansive brand layouts designed to anchor your digital presence.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-4">
+                <img class="h-8 w-8 hover:scale-110" src="/public/images/arrow.png" alt="">
+                <button class="hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="#fff9" class="w-6 h-6 heart-icon" onclick="this.classList.toggle('filled')">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section id="contact" class="w-full bg-[#f8f8f8] px-4 sm:px-8 md:px-12 py-16 sm:py-20 flex flex-col">
+
+    <div class="relative w-fit mb-16">
+        <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-7xl relative z-10">CONTACT</h2>
+        <svg class="absolute -bottom-5 left-0 w-full h-12 z-0" viewBox="0 0 300 40" fill="none">
+            <path d="M5 40 Q150 20 297 25" stroke="#b2ff0a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 mt-4">
+
+        <div id="con-det" class="flex flex-col gap-7">
+            <div>
+                <p class="font-mont font-bold text-xs tracking-[4px] text-gray-400 mb-3">CONTACT DETAILS</p>
+                <a href="mailto:hello@alenkevin.com" class="font-heading text-xl sm:text-2xl md:text-4xl hover:text-[#b2ff0a] transition break-all">HELLO@ALENKEVIN.COM</a>
+                <p class="mt-2 text-sm font-medium text-gray-700">+92 300 1234567</p>
+            </div>
+            <div>
+                <p class="font-mont font-bold text-xs tracking-[4px] text-gray-400 mb-3">SOCIALS</p>
+                <div class="flex flex-wrap gap-4 text-sm font-semibold">
+                    <a class="hover:underline decoration-[#b2ff0a] cursor-pointer underline-offset-8">INSTAGRAM</a>
+                    <a class="hover:underline decoration-[#b2ff0a] cursor-pointer underline-offset-8">BEHANCE</a>
+                    <a class="hover:underline decoration-[#b2ff0a] cursor-pointer underline-offset-8">DRIBBBLE</a>
+                </div>
+            </div>
+            <div class="space-y-1">
+                <p class="font-mont font-bold text-xs  tracking-[4px] text-gray-400 mb-2">LOCATION & TIME</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold text-black">Based in:</span> Pakistan</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold text-black">Working Hours:</span> Mon – Sat</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold text-black">Timezone:</span> PKT (GMT +5)</p>
+                <p class="text-sm text-gray-700"><span class="font-semibold text-black">Response Time:</span> Within 24 hours</p>
+            </div>
+            <div class="px-5 py-4 bg-black rounded-2xl w-fit">
+                <p class="text-xs tracking-widest text-white">CURRENTLY AVAILABLE FOR<br><span class="text-[#b2ff0a]">FREELANCE PROJECTS</span></p>
+            </div>
+        </div>
+
+        <div id="con-form" class="relative bg-black text-white rounded-2xl p-5 sm:p-8 md:p-10 shadow-xl border border-gray-800">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#b2ff0a] opacity-20 blur-[70px] pointer-events-none"></div>
+            <form id="contactForm" class="space-y-5 relative z-10" novalidate>
+                <div>
+                    <label class="font-logon2 text-[10px] tracking-widest mb-2 block">YOUR NAME</label>
+                    <input id="nameInput" type="text" placeholder="Enter your name" class="w-full bg-gray-50 text-black rounded-2xl p-3 sm:p-4 text-sm outline-none focus:ring-2 focus:ring-[#b2ff0a] transition"/>
+                    <p id="nameError" class="text-red-400 text-[10px] tracking-widest mt-1 hidden">✕ Name should be 2–50 characters</p>
+                </div>
+                <div>
+                    <label class="font-logon2 text-[10px] tracking-widest mb-2 block">EMAIL ADDRESS</label>
+                    <input id="emailInput" type="email" placeholder="you@example.com" class="w-full bg-gray-50 text-black rounded-2xl p-3 sm:p-4 text-sm outline-none focus:ring-2 focus:ring-[#b2ff0a] transition"/>
+                    <p id="emailError" class="text-red-400 text-[10px] tracking-widest mt-1 hidden">✕ Invalid email address</p>
+                </div>
+                <div>
+                    <label class="font-logon2 text-[10px] tracking-widest mb-2 block">YOUR MESSAGE</label>
+                    <textarea id="messageInput" rows="4" placeholder="Your message here..." class="w-full bg-gray-50 text-black rounded-2xl p-3 sm:p-4 text-sm outline-none resize-none focus:ring-2 focus:ring-[#b2ff0a] transition"></textarea>
+                    <p id="messageError" class="text-red-400 text-[10px] tracking-widest mt-1 hidden">✕ Message should be at least 10 characters</p>
+                </div>
+                <button id="submitBtn" type="submit" class="w-full bg-[#b2ff0a] text-black py-3 sm:py-4 rounded-2xl text-sm font-bold tracking-[4px] uppercase hover:scale-105 transition">SEND MESSAGE</button>
+                <p id="successMsg" class="text-[#b2ff0a] text-[11px] tracking-widest text-center hidden">✓ Message sent successfully!</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer class="w-full bg-black text-white pt-12 sm:pt-20 pb-8 px-4 sm:px-8 md:px-10 rounded-t-[32px] sm:rounded-t-[60px]">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-10 border-b border-gray-800 pb-12">
+        <div>
+            <div class="leading-[0.75]">
+                <span class="font-logon1 text-[22px] sm:text-[28px] font-semibold tracking-[5px] text-white">ALEN</span><br>
+                <span class="font-logon2 font-bold text-[26px] sm:text-[33px] text-white">KEVIN</span>
+            </div>
+            <p class="font-mont text-gray-400 max-w-xs text-sm leading-relaxed mt-3">Pushing the boundaries of visual storytelling through modern design.</p>
+        </div>
+        <div class="flex flex-col gap-4">
+            <span class="font-mont font-bold text-[10px] text-gray-500 tracking-[3px]">SOCIALS</span>
+            <div class="flex flex-wrap gap-5 sm:gap-8 font-mont font-bold text-sm">
+                <a href="#" class="hover:text-[#b2ff0a] transition">INSTAGRAM</a>
+                <a href="#" class="hover:text-[#b2ff0a] transition">BEHANCE</a>
+                <a href="#" class="hover:text-[#b2ff0a] transition">DRIBBBLE</a>
+                <a href="#" class="hover:text-[#b2ff0a] transition">LINKEDIN</a>
+            </div>
+        </div>
+        <div>
+            <span class="font-mont font-bold text-[10px] text-gray-500 tracking-[3px] block mb-3">READY TO WORK?</span>
+            <a href="mailto:hello@alenkevin.com" class="font-heading text-2xl sm:text-4xl md:text-5xl hover:text-[#b2ff0a] transition break-all">HELLO@ALENKEVIN.COM</a>
+        </div>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-between items-center mt-8 text-[10px] text-gray-600 uppercase tracking-widest gap-3 text-center">
+        <p>© 2026 ALEN KEVIN — ALL RIGHTS RESERVED</p>
+        <p>MADE WITH GSAP & TAILWIND</p>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="hover:text-white transition">BACK TO TOP ↑</button>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('c-logo-design').addEventListener('click', () => window.location.href = '/src/projects.html?category=logo');
+    document.getElementById('c-thumbnail-design').addEventListener('click', () => window.location.href = '/src/projects.html?category=thumbnail');
+    document.getElementById('c-poster-design').addEventListener('click', () => window.location.href = '/src/projects.html?category=poster');
+    document.getElementById('c-banner-design').addEventListener('click', () => window.location.href = '/src/projects.html?category=banner');
+    document.getElementById('viewall').addEventListener('click', () => window.location.href = '/src/projects.html');
+    document.getElementById('proj').addEventListener('click', () => window.location.href = '/src/projects.html');
+</script>
+<script src="/src/main.js"></script>
+</body>
+</html>

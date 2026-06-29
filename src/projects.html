@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Alen Kevin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; overflow-x: hidden; }
+        body { background: #f8f8f8; font-family: 'Inter', sans-serif; }
+
+        .font-heading { font-family: "Ubuntu", sans-serif; }
+        .font-logon1  { font-family: "Cinzel", serif; }
+        .font-logon2  { font-family: "Inter", sans-serif; }
+        .font-mont    { font-family: "Montserrat", sans-serif; }
+
+        /* Project card hover */
+        .project-item {
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .project-item:hover { transform: translateY(-6px); }
+        .project-item img { transition: transform 0.6s ease; }
+        .project-item:hover img { transform: scale(1.08); }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.85);
+            padding: 1.25rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+        .project-item:hover .project-overlay { transform: translateY(0); }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            transition: background 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .project-item:hover::before { background: rgba(0,0,0,0.25); }
+
+        .curved-heading {
+            font-size: clamp(2rem, 7vw, 5rem);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        /* KEY FIX: sidenav fixed, nav relative — koi conflict nahi */
+        #sideNav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100%;
+            transition: right 0.5s ease;
+            z-index: 90;
+        }
+        #sideNav.open { right: 0; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<!-- ══════════════════════════════════
+     NAVBAR — position: relative, NOT sticky
+══════════════════════════════════ -->
+<nav class="w-full px-4 sm:px-6 py-3 bg-white border-b border-gray-100 flex justify-between items-center z-50 relative">
+
+    <div class="leading-[0.75] tracking-tight text-black">
+        <a href="/index.html">
+            <span class="font-logon1 text-[16px] sm:text-[24px] md:text-[30px] font-semibold tracking-[4px]">ALEN</span><br>
+            <span class="font-logon2 font-bold text-[20px] sm:text-[28px] md:text-[35px]">KEVIN</span>
+        </a>
+    </div>
+
+    <div class="flex items-center justify-center">
+        <img class="w-[7vh] h-[7vh] sm:w-[10vh] sm:h-[10vh] -rotate-90" src="/public/images/lslogo.png" alt="Logo">
+    </div>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+        <button class="bg-[#b2ff0a] font-mont text-black px-3 sm:px-5 py-1.5 rounded-full font-bold text-[10px] sm:text-[13px] uppercase tracking-widest shadow-lg whitespace-nowrap">
+            Hire Me
+        </button>
+        <button id="menuBtn" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 z-[100]">
+            <span id="menuIcon" class="text-base leading-none">☰</span>
+        </button>
+    </div>
+
+    <!-- Side Nav — fixed, independent of nav -->
+    <div id="sideNav" class="w-64 sm:w-72 bg-black text-white flex flex-col justify-center items-center space-y-8 shadow-2xl">
+        <a href="/index.html" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">Home</a>
+        <a href="/index.html#about" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">About</a>
+        <a href="/src/projects.html" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">Projects</a>
+        <a href="/index.html#contact" class="nav-item text-xl font-mont font-bold tracking-widest opacity-0 hover:text-[#b2ff0a] transition">Contact</a>
+    </div>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     INDIVIDUAL: LOGO DESIGN
+══════════════════════════════════ -->
+<div id="individual-logodesign" class="flex-1 w-full">
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16">
+        <div class="text-center mb-6">
+            <h1 class="curved-heading font-heading font-bold text-gray-900">LOGO DESIGN</h1>
+        </div>
+        <div class="text-center mb-14">
+            <p class="text-gray-600 text-sm sm:text-lg font-mont leading-relaxed mx-auto max-w-3xl">
+                Professional logo design services that capture your brand's essence. Each logo is crafted with attention to detail, ensuring a unique and memorable identity that stands out in the market.
+            </p>
+        </div>
+        <div class="space-y-14">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Tech Startup Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=400&h=400&fit=crop" alt="Tech Startup Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Modern minimalist logo designed for a technology startup emphasizing innovation through clean lines and contemporary aesthetics.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Creative Agency Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=400&h=400&fit=crop" alt="Creative Agency Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Bold identity for a digital marketing agency showcasing creativity and dynamic brand presence with striking visual elements.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Fitness Brand Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=400&h=400&fit=crop" alt="Fitness Brand Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Energetic design for health and wellness brand combining strength and vitality in a memorable visual identity.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Coffee Shop Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b629336889e?w=400&h=400&fit=crop" alt="Coffee Shop Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Warm and inviting cafe branding identity creating a cozy atmosphere through thoughtful design and color selection.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Fashion Label Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400&h=400&fit=crop" alt="Fashion Label Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Elegant luxury branding for clothing line merging sophistication with contemporary fashion aesthetics.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Eco Brand Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=400&fit=crop" alt="Eco Brand Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Sustainable organic product line identity emphasizing environmental consciousness and natural beauty.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Music Studio Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&h=400&fit=crop" alt="Music Studio Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Creative audio production company branding reflecting the rhythm and energy of musical creation.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Real Estate Logo</h3>
+                <div class="w-full max-w-sm aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=400&fit=crop" alt="Real Estate Logo" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Professional property development branding conveying trust, stability, and premium real estate services.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     INDIVIDUAL: THUMBNAIL
+══════════════════════════════════ -->
+<div id="individual-thumbnail" class="flex-1 w-full">
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16">
+        <div class="text-center mb-6">
+            <h1 class="curved-heading font-heading font-bold text-gray-900">THUMBNAIL DESIGN</h1>
+        </div>
+        <div class="text-center mb-14">
+            <p class="text-gray-600 text-sm sm:text-lg font-mont leading-relaxed mx-auto max-w-3xl">
+                Eye-catching thumbnail designs that boost your content's click-through rate. Created specifically for YouTube, social media, and digital platforms to maximize engagement.
+            </p>
+        </div>
+        <div class="space-y-14">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Gaming Thumbnail</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=450&fit=crop" alt="Gaming Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Vibrant design for gaming content channel featuring dynamic composition to capture attention in crowded feeds.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Tech Review Thumbnail</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=450&fit=crop" alt="Tech Review Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Eye-catching thumbnail for product reviews optimized for technology content and gadget reviews.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Vlog Thumbnail</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=450&fit=crop" alt="Vlog Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Personal branding for lifestyle vlogger with authentic and engaging visual storytelling.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Tutorial Thumbnail</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&h=450&fit=crop" alt="Tutorial Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Educational content for design tutorials with clear messaging and professional presentation.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Podcast Thumbnail</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=450&fit=crop" alt="Podcast Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Professional audio show cover design creating strong brand recognition for podcast content.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Travel Vlog Thumbnail</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&h=450&fit=crop" alt="Travel Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Adventure content thumbnail design showcasing wanderlust and exciting travel destinations.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     INDIVIDUAL: POSTER
+══════════════════════════════════ -->
+<div id="individual-poster" class="flex-1 w-full">
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16">
+        <div class="text-center mb-6">
+            <h1 class="curved-heading font-heading font-bold text-gray-900">POSTER DESIGN</h1>
+        </div>
+        <div class="text-center mb-14">
+            <p class="text-gray-600 text-sm sm:text-lg font-mont leading-relaxed mx-auto max-w-3xl">
+                Creative poster designs for events, promotions, and campaigns. Each design combines striking visuals with effective messaging to create memorable promotional materials.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Music Festival Poster</h3>
+                <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-4">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b629336889e?w=600&h=800&fit=crop" alt="Music Festival Poster" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm">Vibrant event poster for summer music festival capturing the excitement and atmosphere of live music.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Art Exhibition Poster</h3>
+                <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-4">
+                    <img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=600&h=800&fit=crop" alt="Art Exhibition Poster" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm">Contemporary art gallery showcase design with sophisticated visual presentation and elegant composition.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Film Premiere Poster</h3>
+                <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-4">
+                    <img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=600&h=800&fit=crop" alt="Film Premiere Poster" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm">Cinematic movie poster for premiere event with dramatic visual storytelling and compelling imagery.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Sports Event Poster</h3>
+                <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-4">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=800&fit=crop" alt="Sports Poster" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm">Dynamic championship tournament poster showcasing athletic energy and competition spirit.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Concert Poster</h3>
+                <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-4">
+                    <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=600&h=800&fit=crop" alt="Concert Poster" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm">Live music performance promotional design with bold typography that resonates with fans.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">Conference Poster</h3>
+                <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-4">
+                    <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&h=800&fit=crop" alt="Conference Poster" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm">Professional tech conference event poster with clean design and impactful messaging.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     INDIVIDUAL: BANNER
+══════════════════════════════════ -->
+<div id="individual-banner" class="flex-1 w-full">
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16">
+        <div class="text-center mb-6">
+            <h1 class="curved-heading font-heading font-bold text-gray-900">BANNER DESIGN</h1>
+        </div>
+        <div class="text-center mb-14">
+            <p class="text-gray-600 text-sm sm:text-lg font-mont leading-relaxed mx-auto max-w-3xl">
+                Professional banner designs for websites, advertisements, and digital campaigns. Optimized for maximum impact and conversion across all digital platforms.
+            </p>
+        </div>
+        <div class="space-y-14">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">E-commerce Banner</h3>
+                <div class="w-full aspect-[16/5] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=1600&h=500&fit=crop" alt="E-commerce Banner" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Promotional web banner for online store sale featuring clean layout and compelling call-to-action.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Tech Product Banner</h3>
+                <div class="w-full aspect-[16/5] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=1600&h=500&fit=crop" alt="Tech Banner" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Product launch campaign banner showcasing innovation and cutting-edge technology with modern aesthetics.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Online Course Banner</h3>
+                <div class="w-full aspect-[16/5] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1600&h=500&fit=crop" alt="Course Banner" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Educational platform promotional banner designed to attract learners and showcase course value.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">App Launch Banner</h3>
+                <div class="w-full aspect-[16/5] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=1600&h=500&fit=crop" alt="App Banner" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Mobile application release campaign banner with modern design and user-focused messaging.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Event Registration Banner</h3>
+                <div class="w-full aspect-[16/5] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=1600&h=500&fit=crop" alt="Event Banner" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Conference signup promotional web banner creating urgency and excitement for event participation.</p>
+            </div>
+            <div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-900 mb-5">Brand Campaign Banner</h3>
+                <div class="w-full aspect-[16/5] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition mb-5">
+                    <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=1600&h=500&fit=crop" alt="Brand Banner" class="w-full h-full object-cover">
+                </div>
+                <p class="text-gray-600 font-mont leading-relaxed text-sm sm:text-base">Marketing campaign hero banner design with strong brand presence and conversion-focused elements.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     ALL PROJECTS GRID
+══════════════════════════════════ -->
+<div id="all-projects" class="flex-1 w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 md:px-12 py-12 sm:py-16">
+
+        <!-- Logo Design -->
+        <section class="mb-16 sm:mb-20">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-gray-900">Logo Design</h2>
+            <div class="w-20 h-1 bg-black mt-3 mb-2"></div>
+            <p class="text-gray-600 text-sm font-mont mb-8">Iconic marks distilled from brand essence</p>
+            <div id="logos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-5">
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=400&h=400&fit=crop" alt="Tech Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Tech Startup Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=400&h=400&fit=crop" alt="Agency Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Creative Agency Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=400&h=400&fit=crop" alt="Fitness Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Fitness Brand Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162617474-5b629336889e?w=400&h=400&fit=crop" alt="Coffee Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Coffee Shop Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400&h=400&fit=crop" alt="Fashion Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Fashion Label Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=400&fit=crop" alt="Eco Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Eco Brand Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&h=400&fit=crop" alt="Music Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Music Studio Logo</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-square overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=400&fit=crop" alt="Real Estate Logo" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Real Estate Logo</h3></div></div></div>
+            </div>
+        </section>
+
+        <!-- Thumbnail Design -->
+        <section class="mb-16 sm:mb-20">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-gray-900">Thumbnail Design</h2>
+            <div class="w-20 h-1 bg-black mt-3 mb-2"></div>
+            <p class="text-gray-600 text-sm font-mont mb-8">Eye-catching thumbnails for YouTube and social media</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-video overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=450&fit=crop" alt="Gaming" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-base mb-1">Gaming Thumbnail</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-video overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=450&fit=crop" alt="Tech" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-base mb-1">Tech Review Thumbnail</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-video overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=450&fit=crop" alt="Vlog" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-base mb-1">Vlog Thumbnail</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-video overflow-hidden relative"><img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&h=450&fit=crop" alt="Tutorial" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-base mb-1">Tutorial Thumbnail</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-video overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=450&fit=crop" alt="Podcast" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-base mb-1">Podcast Thumbnail</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-video overflow-hidden relative"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&h=450&fit=crop" alt="Travel" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-base mb-1">Travel Vlog Thumbnail</h3></div></div></div>
+            </div>
+        </section>
+
+        <!-- Poster Design -->
+        <section class="mb-16 sm:mb-20">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-gray-900">Poster Design</h2>
+            <div class="w-20 h-1 bg-black mt-3 mb-2"></div>
+            <p class="text-gray-600 text-sm font-mont mb-8">Creative posters for events and promotions</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5">
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[3/4] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162617474-5b629336889e?w=600&h=800&fit=crop" alt="Music Festival" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Music Festival Poster</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[3/4] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=600&h=800&fit=crop" alt="Art Exhibition" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Art Exhibition Poster</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[3/4] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=600&h=800&fit=crop" alt="Film Premiere" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Film Premiere Poster</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[3/4] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=800&fit=crop" alt="Sports" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Sports Event Poster</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[3/4] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=600&h=800&fit=crop" alt="Concert" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Concert Poster</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[3/4] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&h=800&fit=crop" alt="Conference" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-sm">Conference Poster</h3></div></div></div>
+            </div>
+        </section>
+
+        <!-- Banner Design -->
+        <section class="mb-10">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-gray-900">Banner Design</h2>
+            <div class="w-20 h-1 bg-black mt-3 mb-2"></div>
+            <p class="text-gray-600 text-sm font-mont mb-8">Professional banners for websites and ads</p>
+            <div class="grid grid-cols-1 gap-4 sm:gap-5">
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[16/5] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=1600&h=500&fit=crop" alt="E-commerce" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-lg mb-1">E-commerce Banner</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[16/5] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=1600&h=500&fit=crop" alt="Tech" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-lg mb-1">Tech Product Banner</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[16/5] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1600&h=500&fit=crop" alt="Course" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-lg mb-1">Online Course Banner</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[16/5] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=1600&h=500&fit=crop" alt="App" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-lg mb-1">App Launch Banner</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[16/5] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=1600&h=500&fit=crop" alt="Event" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-lg mb-1">Event Registration Banner</h3></div></div></div>
+                <div class="project-item rounded-xl overflow-hidden shadow-md"><div class="aspect-[16/5] overflow-hidden relative"><img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=1600&h=500&fit=crop" alt="Brand" class="w-full h-full object-cover"><div class="project-overlay"><h3 class="text-white font-heading font-bold text-lg mb-1">Brand Campaign Banner</h3></div></div></div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer class="w-full bg-black text-white pt-12 sm:pt-20 pb-8 px-4 sm:px-8 md:px-10 rounded-t-[32px] sm:rounded-t-[60px]">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-10 border-b border-gray-800 pb-12">
+        <div>
+            <div class="leading-[0.75]">
+                <span class="font-logon1 text-[22px] sm:text-[28px] font-semibold tracking-[5px] text-white">ALEN</span><br>
+                <span class="font-logon2 font-bold text-[26px] sm:text-[33px] text-white">KEVIN</span>
+            </div>
+            <p class="font-mont text-gray-400 max-w-xs text-sm leading-relaxed mt-3">Pushing the boundaries of visual storytelling through modern design and creative technology.</p>
+        </div>
+        <div class="flex flex-col gap-4">
+            <span class="font-mont text-[10px] text-gray-500 tracking-[3px]">SOCIALS</span>
+            <div class="flex flex-wrap gap-5 sm:gap-8 font-mont font-bold text-sm">
+                <a href="#" class="hover:text-[#b2ff0a] transition">INSTAGRAM</a>
+                <a href="#" class="hover:text-[#b2ff0a] transition">BEHANCE</a>
+                <a href="#" class="hover:text-[#b2ff0a] transition">DRIBBBLE</a>
+                <a href="#" class="hover:text-[#b2ff0a] transition">LINKEDIN</a>
+            </div>
+        </div>
+        <div>
+            <span class="font-mont text-[10px] text-gray-500 tracking-[3px] block mb-3">READY TO WORK?</span>
+            <a href="mailto:hello@alenkevin.com" class="font-heading text-2xl sm:text-4xl md:text-5xl hover:text-[#b2ff0a] transition break-all">HELLO@ALENKEVIN.COM</a>
+        </div>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-between items-center mt-8 text-[10px] text-gray-600 uppercase tracking-widest gap-3 text-center">
+        <p>© 2026 ALEN KEVIN — ALL RIGHTS RESERVED</p>
+        <p>MADE WITH GSAP & TAILWIND</p>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="hover:text-white transition">BACK TO TOP ↑</button>
+    </div>
+</footer>
+
+<script>
+    // ── MENU TOGGLE ──
+    const menuBtn  = document.getElementById('menuBtn');
+    const sideNav  = document.getElementById('sideNav');
+    const menuIcon = document.getElementById('menuIcon');
+    const navItems = document.querySelectorAll('.nav-item');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+            sideNav.style.right = '0';
+            menuIcon.textContent = '✕';
+            navItems.forEach((item, i) => setTimeout(() => item.style.opacity = '1', 100 * i));
+        } else {
+            sideNav.style.right = '-100%';
+            menuIcon.textContent = '☰';
+            navItems.forEach(item => item.style.opacity = '0');
+        }
+    });
+
+    // ── SHOW SECTION BY URL PARAM ──
+    window.addEventListener('DOMContentLoaded', () => {
+        const sections = ['individual-logodesign','individual-thumbnail','individual-poster','individual-banner','all-projects'];
+        sections.forEach(id => document.getElementById(id).style.display = 'none');
+
+        const cat = new URLSearchParams(window.location.search).get('category');
+        const map = {
+            logo:      'individual-logodesign',
+            thumbnail: 'individual-thumbnail',
+            poster:    'individual-poster',
+            banner:    'individual-banner'
+        };
+
+        const toShow = map[cat] || 'all-projects';
+        document.getElementById(toShow).style.display = 'block';
+    });
+</script>
+</body>
+</html>

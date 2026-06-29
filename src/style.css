@@ -1,0 +1,72 @@
+/* ===== SMOOTH FLOAT ANIMATION ===== */
+@keyframes smoothFloat {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    20%  { transform: translateX(3px); }
+    40%  { transform: translateX(-3px); }
+    60%  { transform: translateY(3px); }
+    80%  { transform: translateY(-3px); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+.smooth-float {
+    animation: smoothFloat 9s ease-in-out infinite;
+    will-change: transform;
+    filter: drop-shadow(0 30px 40px rgba(0,0,0,0.18));
+}
+
+/* ===== NUMBER OVERLAY ON PROJECT CARD ===== */
+.overlay {
+    position: absolute;
+    height: 6.8vh;
+    width: 6.8vh;
+    top: 0;
+    left: 0;
+    border-bottom-right-radius: 7px;
+    background-color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== HEART ICON ===== */
+.heart-icon { fill: none; }
+.heart-icon.filled { fill: #ffffff; stroke: #ffffff; }
+
+/* ===== PROJECT CARD HOVER ===== */
+.prjcard {
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+}
+.prjcard:hover { transform: scale(1.03); }
+
+/* ===== CLOUD OVERLAY (used in some sections) ===== */
+.cloud-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(70,70,70,0.5), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(70,70,70,0.5), transparent 60%);
+    filter: blur(60px);
+    z-index: 0;
+}
+
+/* ===== SECTION HEADING UNDERLINE ===== */
+.section-heading {
+    position: relative;
+    width: fit-content;
+}
+.section-heading svg {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    z-index: 0;
+}
+
+/* ===== RESPONSIVE: mobile nav sizing ===== */
+@media (max-width: 480px) {
+    .overlay { height: 8vw; width: 8vw; font-size: 1rem; }
+}
